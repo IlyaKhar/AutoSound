@@ -105,7 +105,7 @@ router.post('/register', async (req, res) => {
 
         const refreshToken = jwt.sign(
             { userId: user._id },
-            process.env.REFRESH_TOKEN_SECRET,
+            process.env.JWT_REFRESH_SECRET,
             { expiresIn: '30d' }
         );
 
@@ -247,7 +247,7 @@ router.post('/login', [
 
         const refreshToken = jwt.sign(
             { userId: user._id },
-            process.env.REFRESH_TOKEN_SECRET,
+            process.env.JWT_REFRESH_SECRET,
             { expiresIn: '30d' }
         );
 
