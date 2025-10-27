@@ -5,7 +5,13 @@ const mongoose = require('mongoose');
 const connectDB = async () => {
     try {
         const conn = await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/autosound', {
-            // Убираем deprecated опции
+            serverSelectionTimeoutMS: 5000, // Таймаут подключения 5 секунд
+            socketTimeoutMS: 45000, // Таймаут сокета
+            connectTimeoutMS: 10000, // Таймаут соединения
+            maxPoolSize: 10, // Максимум соединений в пуле
+            minPoolSize: 2, // Минимум соединений в пуле
+            retryWrites: true,
+            w: 'majority'
         });
 
         console.log(`✅ MongoDB подключена: ${conn.connection.host}`);
