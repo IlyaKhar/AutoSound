@@ -864,6 +864,12 @@
     display: flex;
     transition: transform 0.5s ease;
     gap: 30px;
+    cursor: grab;
+    user-select: none;
+}
+
+.carousel-track:active {
+    cursor: grabbing;
 }
 
 

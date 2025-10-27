@@ -843,10 +843,127 @@ function updateIndicators() {
     });
 }
 
-// Автопрокрутка карусели
-setInterval(() => {
-    moveCarousel('next');
-}, 5000);
+// ===== СВАЙП ДЛЯ КАРУСЕЛИ =====
+let touchStartX = 0;
+let touchEndX = 0;
+
+const carouselTrack = document.getElementById('carouselTrack');
+if (carouselTrack) {
+    // Desktop - колесо мыши
+    carouselTrack.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        if (e.deltaY > 0) {
+            moveCarousel('next');
+        } else {
+            moveCarousel('prev');
+        }
+    });
+
+    // Touch events для мобильных
+    carouselTrack.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    carouselTrack.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, { passive: true });
+
+    // Mouse drag
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragCurrentX = 0;
+
+    carouselTrack.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        dragStartX = e.clientX;
+        carouselTrack.style.cursor = 'grabbing';
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        dragCurrentX = e.clientX;
+        const diff = dragStartX - dragCurrentX;
+        
+        // Показываем визуальную обратную связь
+        carouselTrack.style.transition = 'none';
+        const cards = carouselTrack.querySelectorAll('.new-item-card');
+        const slidesPerView = getSlidesPerView();
+        const offset = -currentSlide * (100 / slidesPerView) - (diff / carouselTrack.offsetWidth * 100);
+        carouselTrack.style.transform = `translateX(${offset}%)`;
+    });
+
+    document.addEventListener('mouseup', () => {
+        if (!isDragging) return;
+        isDragging = false;
+        carouselTrack.style.cursor = 'grab';
+        carouselTrack.style.transition = 'transform 0.5s ease';
+        
+        const diff = dragStartX - dragCurrentX;
+        const threshold = 50; // Минимальное расстояние для свайпа
+        
+        if (Math.abs(diff) > threshold) {
+            if (diff > 0) {
+                moveCarousel('next');
+            } else {
+                moveCarousel('prev');
+            }
+        } else {
+            // Возвращаем к текущему слайду
+            const slidesPerView = getSlidesPerView();
+            const offset = -currentSlide * (100 / slidesPerView);
+            carouselTrack.style.transform = `translateX(${offset}%)`;
+        }
+    });
+}
+
+function handleSwipe() {
+    const swipeThreshold = 50;
+    const swipeLength = touchStartX - touchEndX;
+    
+    if (Math.abs(swipeLength) > swipeThreshold) {
+        if (swipeLength > 0) {
+            moveCarousel('next');
+        } else {
+            moveCarousel('prev');
+        }
+    }
+}
+
+// Отключаем автопрокрутку при взаимодействии
+let userInteracted = false;
+let autoplayInterval = null;
+
+function startAutoplay() {
+    if (!userInteracted && !autoplayInterval) {
+        autoplayInterval = setInterval(() => {
+            moveCarousel('next');
+        }, 5000);
+    }
+}
+
+function stopAutoplay() {
+    userInteracted = true;
+    if (autoplayInterval) {
+        clearInterval(autoplayInterval);
+        autoplayInterval = null;
+    }
+    
+    // Возобновляем автопрокрутку через 10 секунд бездействия
+    setTimeout(() => {
+        userInteracted = false;
+        startAutoplay();
+    }, 10000);
+}
+
+if (carouselTrack) {
+    carouselTrack.addEventListener('touchstart', stopAutoplay);
+    carouselTrack.addEventListener('mousedown', stopAutoplay);
+    carouselTrack.addEventListener('wheel', stopAutoplay);
+}
+
+// Стартуем автопрокрутку
+startAutoplay();
 
 // ===== ИНИЦИАЛИЗАЦИЯ =====
 document.addEventListener('DOMContentLoaded', () => {
