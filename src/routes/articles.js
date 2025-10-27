@@ -55,6 +55,22 @@ router.get('/search', async (req, res) => {
 // ===== ПОЛУЧЕНИЕ ВСЕХ СТАТЕЙ =====
 router.get('/', async (req, res) => {
     try {
+        // Проверяем подключение к MongoDB
+        const mongoose = require('mongoose');
+        if (mongoose.connection.readyState !== 1) {
+            console.log('⚠️ MongoDB не подключена, пытаемся подключиться...');
+            const connectDB = require('../config/database');
+            await connectDB();
+            // Ждём подключения
+            await new Promise((resolve) => {
+                if (mongoose.connection.readyState === 1) {
+                    resolve();
+                } else {
+                    mongoose.connection.once('connected', resolve);
+                }
+            });
+        }
+        
         const page = parseInt(req.query.page) || 1;
         const limit = parseInt(req.query.limit) || 10;
         const skip = (page - 1) * limit;
