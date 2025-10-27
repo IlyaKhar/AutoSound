@@ -1,0 +1,434 @@
+/* ===== МОДАЛЬНЫЕ ОКНА АВТОРИЗАЦИИ ===== */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: linear-gradient(135deg, rgba(255, 182, 193, 0.15) 0%, rgba(255, 192, 203, 0.1) 50%, rgba(255, 105, 180, 0.2) 100%) !important;
+    backdrop-filter: blur(25px) saturate(180%) !important;
+    border-radius: 25px !important;
+    padding: 0 !important;
+    max-width: 480px !important;
+    width: 90% !important;
+    max-height: 90vh !important;
+    overflow-y: auto !important;
+    box-shadow: 
+        0 25px 80px rgba(255, 105, 180, 0.3),
+        0 10px 40px rgba(255, 182, 193, 0.2),
+        0 0 0 1px rgba(255, 255, 255, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        inset 0 -1px 0 rgba(255, 105, 180, 0.2) !important;
+    border: 1px solid rgba(255, 182, 193, 0.3) !important;
+    transform: scale(0.9) translateY(20px) !important;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    position: relative !important;
+}
+
+.modal-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 105, 180, 0.1) 0%, rgba(255, 182, 193, 0.05) 50%, rgba(255, 105, 180, 0.1) 100%);
+    border-radius: 25px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.modal-overlay.active .modal-content {
+    transform: scale(1) translateY(0);
+}
+
+.modal-header {
+    padding: 35px 35px 25px;
+    border-bottom: 1px solid rgba(255, 182, 193, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(135deg, rgba(255, 105, 180, 0.1) 0%, rgba(255, 182, 193, 0.05) 100%);
+    position: relative;
+    z-index: 2;
+}
+
+.modal-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: white !important;
+    margin: 0;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+}
+
+.modal-close {
+    background: linear-gradient(135deg, rgba(255, 182, 193, 0.2) 0%, rgba(255, 192, 203, 0.15) 100%);
+    border: 1px solid rgba(255, 182, 193, 0.4);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+    position: relative;
+    z-index: 2;
+}
+
+.modal-close:hover {
+    background: linear-gradient(135deg, rgba(255, 105, 180, 0.4) 0%, rgba(255, 182, 193, 0.3) 100%);
+    border-color: rgba(255, 105, 180, 0.6);
+    color: #ff69b4;
+    transform: scale(1.15) rotate(90deg);
+    box-shadow: 0 8px 25px rgba(255, 105, 180, 0.5);
+}
+
+/* Вкладки авторизации */
+.auth-tabs {
+    display: flex;
+    padding: 0 35px;
+    border-bottom: 1px solid rgba(255, 182, 193, 0.3);
+    background: linear-gradient(135deg, rgba(255, 105, 180, 0.08) 0%, rgba(255, 182, 193, 0.05) 100%);
+    position: relative;
+    z-index: 2;
+}
+
+.auth-tab {
+    flex: 1;
+    padding: 18px 25px;
+    background: none;
+    border: none;
+    color: white !important;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    border-radius: 15px 15px 0 0;
+}
+
+.auth-tab::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(135deg, #ff69b4 0%, #ffb6c1 100%);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+    border-radius: 2px 2px 0 0;
+}
+
+.auth-tab.active {
+    color: white !important;
+    background: linear-gradient(135deg, rgba(255, 105, 180, 0.2) 0%, rgba(255, 182, 193, 0.15) 100%) !important;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 -2px 10px rgba(255, 105, 180, 0.2);
+}
+
+.auth-tab.active::before {
+    transform: scaleX(1) !important;
+}
+
+.auth-tab:hover {
+    color: white !important;
+    background: linear-gradient(135deg, rgba(255, 105, 180, 0.1) 0%, rgba(255, 182, 193, 0.08) 100%);
+    transform: translateY(-2px);
+}
+
+
+/* Формы */
+.auth-form {
+    padding: 30px;
+    display: none;
+}
+
+.auth-form.active {
+    display: block;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: white;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute !important;
+    left: 30px !important;
+    color: rgba(255, 255, 255, 0.6) !important;
+    font-size: 16px !important;
+    z-index: 1 !important;
+    pointer-events: none !important;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 16px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 1;
+    transition: color 0.3s ease;
+}
+
+.password-toggle:hover {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.form-group input {
+    width: 100% !important;
+    padding: 16px 20px 16px 80px !important;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 105, 180, 0.05) 100%) !important;
+    border: 1px solid rgba(255, 182, 193, 0.3) !important;
+    border-radius: 15px !important;
+    color: white !important;
+    font-size: 16px !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    box-sizing: border-box !important;
+    backdrop-filter: blur(15px) !important;
+    box-shadow: 
+        0 4px 15px rgba(255, 105, 180, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    position: relative !important;
+    z-index: 2 !important;
+}
+
+.form-group input[type="password"] {
+    padding-right: 52px;
+}
+
+.form-group input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 400;
+}
+
+.form-group input:focus {
+    outline: none;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 105, 180, 0.1) 100%);
+    border-color: #ff69b4;
+    box-shadow: 
+        0 0 0 3px rgba(255, 105, 180, 0.2),
+        0 8px 25px rgba(255, 105, 180, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.form-group input:focus + .input-icon {
+    color: #ff69b4;
+    text-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+}
+
+.form-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #ff69b4;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.checkbox-label input[type="checkbox"]:checked {
+    background: #ff69b4;
+    border-color: #ff69b4;
+    box-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
+}
+
+.checkbox-label input[type="checkbox"]:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.05);
+}
+
+.forgot-link {
+    color: white !important;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.forgot-link:hover {
+    color: white !important;
+    text-decoration: underline;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+    transform: translateY(-1px);
+}
+
+/* Кнопки */
+.btn-full {
+    width: 100% !important;
+    padding: 18px 25px !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 15px !important;
+    color: white !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    cursor: pointer !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    text-decoration: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    backdrop-filter: blur(15px) !important;
+    box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.2),
+        0 4px 15px rgba(255, 255, 255, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3) !important;
+    position: relative !important;
+    z-index: 2 !important;
+}
+
+.btn-full:hover {
+    transform: translateY(-3px) scale(1.02) !important;
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-color: rgba(255, 255, 255, 0.5) !important;
+    box-shadow: 
+        0 12px 35px rgba(0, 0, 0, 0.3),
+        0 6px 20px rgba(255, 255, 255, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+}
+
+.btn-full:active {
+    transform: translateY(-1px) scale(1.01) !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 
+        0 6px 20px rgba(0, 0, 0, 0.2),
+        0 3px 10px rgba(255, 255, 255, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Адаптивность */
+@media (max-width: 480px) {
+    .modal-content {
+        width: 95%;
+        margin: 20px;
+    }
+    
+    .modal-header {
+        padding: 20px 20px 15px;
+    }
+    
+    .modal-title {
+        font-size: 20px;
+    }
+    
+    .auth-tabs {
+        padding: 0 20px;
+    }
+    
+    .auth-tab {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+    
+    .auth-form {
+        padding: 20px;
+    }
+    
+    .form-group input {
+        font-size: 14px;
+        padding: 10px 14px;
+    }
+    
+    .btn-full {
+        font-size: 14px;
+        padding: 12px 16px;
+    }
+}
+
+/* Анимации */
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.modal-content {
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+/* Скроллбар для модального окна */
+.modal-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}

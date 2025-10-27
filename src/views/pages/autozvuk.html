@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Автозвук - AutoSound</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/main-styles.css?v=8">
+    <link rel="stylesheet" href="/css/responsive-fixes.css">
+    <link rel="stylesheet" href="/css/loading-animation.css?v=3">
+    <link rel="stylesheet" href="/css/footer-styles.css">
+    <link rel="stylesheet" href="/css/sidebar-styles.css">
+    <link rel="stylesheet" href="/css/force-header-fix.css">
+    <link rel="stylesheet" href="/css/header-footer.css">
+    <link rel="stylesheet" href="/css/auth-modals.css?v=10">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/svg+xml" href="/images/placeholder.svg">
+    <style>
+        .main-content {
+            margin-left: 280px;
+            transition: margin-left 0.3s ease;
+        }
+        
+        .main-content.sidebar-collapsed {
+            margin-left: 80px;
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .main-content.sidebar-collapsed {
+                margin-left: 0;
+            }
+        }
+    </style>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="icon" type="image/svg+xml" href="/images/placeholder.svg">
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="icon" type="image/svg+xml" href="/images/placeholder.svg">
+
+    
+</head>
+<body>
+    <!-- Боковой хедер -->
+    <aside class="sidebar" id="sidebar">
+        <!-- Логотип -->
+        <div class="sidebar-header">
+            <div class="sidebar-logo">
+                <div class="logo-icon">
+                    <i class="fas fa-music"></i>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">AutoSound</span>
+                    <span class="logo-subtitle">Music & Audio</span>
+                </div>
+            </div>
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Навигация -->
+        <nav class="sidebar-nav">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="/" class="nav-link" data-page="main">
+                        <div class="nav-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <span class="nav-text">Главная</span>
+                        <div class="nav-indicator"></div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/categories" class="nav-link" data-page="categories">
+                        <div class="nav-icon">
+                            <i class="fas fa-guitar"></i>
+                        </div>
+                        <span class="nav-text">Инструменты</span>
+                        <div class="nav-indicator"></div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/autozvuk" class="nav-link" data-page="autozvuk" class="nav-link active">
+                        <div class="nav-icon">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        <span class="nav-text">Автозвук</span>
+                        <div class="nav-indicator"></div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/news" class="nav-link" data-page="news">
+                        <div class="nav-icon">
+                            <i class="fas fa-newspaper"></i>
+                        </div>
+                        <span class="nav-text">Новости</span>
+                        <div class="nav-indicator"></div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/rating" class="nav-link" data-page="rating">
+                        <div class="nav-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="nav-text">Рейтинги</span>
+                        <div class="nav-indicator"></div>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Пользователь -->
+        <div class="sidebar-user">
+            <div class="user-avatar">
+                <img src="/images/avatar-default.jpg" alt="Аватар пользователя">
+            </div>
+            <div class="user-info">
+                <div class="user-name">Гость</div>
+                <div class="user-status">Не авторизован</div>
+            </div>
+            <button class="btn-auth btn-primary auth-login-btn" onclick="openAuthModal()">
+                <i class="fas fa-sign-in-alt"></i>
+                <span class="auth-text">Войти</span>
+            </button>
+        </div>
+    </aside>
+    <!-- Фон с органическими формами -->
+    <div class="background">
+        <div class="organic-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape shape-5"></div>
+        </div>
+    </div>
+
+    <!-- Основной контент -->
+    <main class="main-content" id="mainContent">
+        <!-- Герой секция -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1 class="hero-title">
+                            <span class="gradient-text">Автозвук</span> нового поколения
+                        </h1>
+                        <p class="hero-subtitle">
+                            Откройте для себя лучшие автомобильные аудиосистемы, динамики, усилители и сабвуферы
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Популярные товары автозвука -->
+        <section class="articles-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Популярные товары</h2>
+                    <p class="section-subtitle">Лучшие решения для вашего автомобиля</p>
+                </div>
+                
+                <div class="articles-grid" id="articlesGrid">
+                    <!-- Товар 1 -->
+                    <article class="article-card">
+                        <div class="article-image">
+                            <img src="/images/guitar1.jpg" alt="Товар">
+                            <div class="article-badge">Хит продаж</div>
+                        </div>
+                        <div class="article-content">
+                            <div class="article-meta">
+                                <span class="article-category">Динамики</span>
+                                <span class="article-date">В наличии</span>
+                            </div>
+                            <h3 class="article-title">Pioneer TS-A6966S: Компонентные динамики 6x9</h3>
+                            <p class="article-excerpt">Высококачественные компонентные динамики для автомобиля с отличным звуком.</p>
+                            <div class="article-footer">
+                                <div class="article-author">
+                                    <span class="author-name">15 990 ₽</span>
+                                </div>
+                                <div class="article-stats">
+                                    <span class="stat">
+                                        <i class="fas fa-star"></i>
+                                        4.8
+                                    </span>
+                                    <span class="stat">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        Купить
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Товар 2 -->
+                    <article class="article-card">
+                        <div class="article-image">
+                            <img src="/images/synthesizer.jpg" alt="Товар">
+                            <div class="article-badge">Новинка</div>
+                        </div>
+                        <div class="article-content">
+                            <div class="article-meta">
+                                <span class="article-category">Усилитель</span>
+                                <span class="article-date">В наличии</span>
+                            </div>
+                            <h3 class="article-title">Kenwood KAC-M3004: 4-канальный усилитель</h3>
+                            <p class="article-excerpt">Мощный 4-канальный усилитель класса D с отличной надежностью.</p>
+                            <div class="article-footer">
+                                <div class="article-author">
+                                    <span class="author-name">22 500 ₽</span>
+                                </div>
+                                <div class="article-stats">
+                                    <span class="stat">
+                                        <i class="fas fa-star"></i>
+                                        4.7
+                                    </span>
+                                    <span class="stat">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        Купить
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Товар 3 -->
+                    <article class="article-card">
+                        <div class="article-image">
+                            <img src="/images/guitar1.jpg" alt="Товар">
+                            <div class="article-badge">Лучшая цена</div>
+                        </div>
+                        <div class="article-content">
+                            <div class="article-meta">
+                                <span class="article-category">Сабвуфер</span>
+                                <span class="article-date">В наличии</span>
+                            </div>
+                            <h3 class="article-title">Kicker 12TR122: Сабвуфер 12 дюймов</h3>
+                            <p class="article-excerpt">Мощный сабвуфер для глубокого и чистого баса в автомобиле.</p>
+                            <div class="article-footer">
+                                <div class="article-author">
+                                    <span class="author-name">18 900 ₽</span>
+                                </div>
+                                <div class="article-stats">
+                                    <span class="stat">
+                                        <i class="fas fa-star"></i>
+                                        4.9
+                                    </span>
+                                    <span class="stat">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        Купить
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Категории автозвука -->
+        <section class="autozvuk-categories">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Категории оборудования</h2>
+                </div>
+                
+                <div class="categories-grid">
+                    <div class="category-card">
+                        <div class="category-icon">
+                            <i class="fas fa-volume-up"></i>
+                        </div>
+                        <h3 class="category-title">Динамики</h3>
+                        <p class="category-description">Компонентные и коаксиальные динамики для качественного звука</p>
+                        <div class="category-stats">
+                            <span class="stat">150+ моделей</span>
+                        </div>
+                    </div>
+
+                    <div class="category-card">
+                        <div class="category-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3 class="category-title">Усилители</h3>
+                        <p class="category-description">Мощные усилители для идеального звучания</p>
+                        <div class="category-stats">
+                            <span class="stat">80+ моделей</span>
+                        </div>
+                    </div>
+
+                    <div class="category-card">
+                        <div class="category-icon">
+                            <i class="fas fa-music"></i>
+                        </div>
+                        <h3 class="category-title">Сабвуферы</h3>
+                        <p class="category-description">Низкочастотные динамики для глубокого баса</p>
+                        <div class="category-stats">
+                            <span class="stat">60+ моделей</span>
+                        </div>
+                    </div>
+
+                    <div class="category-card">
+                        <div class="category-icon">
+                            <i class="fas fa-headphones"></i>
+                        </div>
+                        <h3 class="category-title">Головные устройства</h3>
+                        <p class="category-description">Магнитолы и мультимедиа системы</p>
+                        <div class="category-stats">
+                            <span class="stat">120+ моделей</span>
+                        </div>
+                    </div>
+
+                    <div class="category-card">
+                        <div class="category-icon">
+                            <i class="fas fa-cog"></i>
+                        </div>
+                        <h3 class="category-title">Аксессуары</h3>
+                        <p class="category-description">Кабели, конденсаторы, шумоизоляция</p>
+                        <div class="category-stats">
+                            <span class="stat">200+ товаров</span>
+                        </div>
+                    </div>
+
+                    <div class="category-card">
+                        <div class="category-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h3 class="category-title">Установка</h3>
+                        <p class="category-description">Профессиональная установка автозвука</p>
+                        <div class="category-stats">
+                            <span class="stat">Услуги</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Видео обзоры автозвука -->
+        <section class="video-reviews">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Видео обзоры</h2>
+                    <p class="section-subtitle">Подробные тесты и сравнения оборудования</p>
+                </div>
+                
+                <div class="reviews-grid">
+                    <div class="review-card">
+                        <div class="review-video">
+                            <div class="video-container">
+                                <iframe 
+                                    src="https://www.youtube.com/embed/jNQXAC9IVRw?rel=0&modestbranding=1" 
+                                    title="Обзор Pioneer TS-A6966S"
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                        </div>
+                        <div class="review-content">
+                            <h3 class="review-title">Обзор Pioneer TS-A6966S: Звук премиум-класса</h3>
+                            <p class="review-description">Подробный тест компонентных динамиков Pioneer с демонстрацией звука и настройками.</p>
+                            <div class="review-meta">
+                                <span class="review-views">32.5k просмотров</span>
+                                <span class="review-likes">
+                                    <i class="fas fa-heart"></i>
+                                    89
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-video">
+                            <div class="video-container">
+                                <iframe 
+                                    src="https://www.youtube.com/embed/9bZkp7q19f0?rel=0&modestbranding=1" 
+                                    title="Обзор Alpine MRV-M500"
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                        </div>
+                        <div class="review-content">
+                            <h3 class="review-title">Тест усилителя Alpine MRV-M500</h3>
+                            <p class="review-description">Сравнение мощности и качества звука усилителя Alpine с конкурентами.</p>
+                            <div class="review-meta">
+                                <span class="review-views">18.7k просмотров</span>
+                                <span class="review-likes">
+                                    <i class="fas fa-heart"></i>
+                                    45
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Новинки месяца -->
+        <section class="new-items">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Новинки месяца</h2>
+                    <p class="section-subtitle">Свежие поступления автозвукового оборудования</p>
+                </div>
+                
+                <div class="new-items-carousel">
+                    <div class="carousel-track" id="carouselTrack">
+                        <div class="new-item-card">
+                            <div class="item-image">
+                                <img src="/images/car-audio.jpg" alt="Pioneer TS-A6966S" loading="lazy">
+                                <div class="item-badge">Новинка</div>
+                            </div>
+                            <div class="item-content">
+                                <h3 class="item-title">Pioneer TS-A6966S</h3>
+                                <p class="item-description">Компонентные динамики 6x9 с высоким качеством звука</p>
+                                <div class="item-meta">
+                                    <span class="item-category">Динамики</span>
+                                    <span class="item-date">20 декабря 2024</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="new-item-card">
+                            <div class="item-image">
+                                <img src="/images/car-audio.jpg" alt="Alpine MRV-M500" loading="lazy">
+                                <div class="item-badge">Популярное</div>
+                            </div>
+                            <div class="item-content">
+                                <h3 class="item-title">Alpine MRV-M500</h3>
+                                <p class="item-description">Моноусилитель 500W для сабвуферов</p>
+                                <div class="item-meta">
+                                    <span class="item-category">Усилители</span>
+                                    <span class="item-date">18 декабря 2024</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="new-item-card">
+                            <div class="item-image">
+                                <img src="/images/car-audio.jpg" alt="JBL Stage 1200" loading="lazy">
+                                <div class="item-badge">Хит</div>
+                            </div>
+                            <div class="item-content">
+                                <h3 class="item-title">JBL Stage 1200</h3>
+                                <p class="item-description">Сабвуфер 12" с мощным басом</p>
+                                <div class="item-meta">
+                                    <span class="item-category">Сабвуферы</span>
+                                    <span class="item-date">15 декабря 2024</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="new-item-card">
+                            <div class="item-image">
+                                <img src="/images/car-audio.jpg" alt="Kenwood DMX7706S" loading="lazy">
+                                <div class="item-badge">Классика</div>
+                            </div>
+                            <div class="item-content">
+                                <h3 class="item-title">Kenwood DMX7706S</h3>
+                                <p class="item-description">2DIN магнитола с Apple CarPlay</p>
+                                <div class="item-meta">
+                                    <span class="item-category">Головные устройства</span>
+                                    <span class="item-date">12 декабря 2024</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="new-item-card">
+                            <div class="item-image">
+                                <img src="/images/car-audio.jpg" alt="Rockford Fosgate R2D4" loading="lazy">
+                                <div class="item-badge">Для начинающих</div>
+                            </div>
+                            <div class="item-content">
+                                <h3 class="item-title">Rockford Fosgate R2D4</h3>
+                                <p class="item-description">Комплект динамиков 6.5" для начинающих</p>
+                                <div class="item-meta">
+                                    <span class="item-category">Комплекты</span>
+                                    <span class="item-date">10 декабря 2024</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-indicators" id="carouselIndicators">
+                        <div class="carousel-dot active" onclick="goToSlide(0)"></div>
+                        <div class="carousel-dot" onclick="goToSlide(1)"></div>
+                        <div class="carousel-dot" onclick="goToSlide(2)"></div>
+                        <div class="carousel-dot" onclick="goToSlide(3)"></div>
+                        <div class="carousel-dot" onclick="goToSlide(4)"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <!-- О компании -->
+                <div class="footer-section">
+                    <h3 class="footer-title">AutoSound</h3>
+                    <p class="footer-description">
+                        Ваш надежный партнер в мире музыки и автозвука. 
+                        Мы предлагаем качественные инструменты, оборудование 
+                        и профессиональные услуги.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://youtube.com/@autosound" class="social-link" target="_blank">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://instagram.com/autosound" class="social-link" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://t.me/autosound" class="social-link" target="_blank">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="https://vk.com/autosound" class="social-link" target="_blank">
+                            <i class="fab fa-vk"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Каталог -->
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Каталог</h4>
+                    <ul class="footer-links">
+                        <li><a href="/categories">Музыкальные инструменты</a></li>
+                        <li><a href="/autozvuk">Автозвук</a></li>
+                        <li><a href="/news">Новости</a></li>
+                        <li><a href="/rating">Рейтинги</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Поддержка -->
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Поддержка</h4>
+                    <ul class="footer-links">
+                        <li><a href="/about">О нас</a></li>
+                        <li><a href="/contacts">Контакты</a></li>
+                        <li><a href="/terms">Условия использования</a></li>
+                        <li><a href="/policy">Политика конфиденциальности</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Контакты -->
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Контакты</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+7 (999) 123-45-67</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@autosound.ru</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Москва, ул. Музыкальная, 1</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 AutoSound. Все права защищены.</p>
+                    <div class="footer-bottom-links">
+                        <a href="/terms">Условия</a>
+                        <a href="/policy">Политика</a>
+                        <a href="/contacts">Контакты</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальное окно авторизации -->
+    <div class="modal-overlay" id="authModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Вход в систему</h2>
+                <button class="modal-close" onclick="closeAuthModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="auth-tabs">
+                <button class="auth-tab active" onclick="switchAuthTab('login')">Вход</button>
+                <button class="auth-tab" onclick="switchAuthTab('register')">Регистрация</button>
+            </div>
+            
+            <!-- Форма входа -->
+            <form class="auth-form" id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-envelope input-icon"></i>
+                        <input type="email" id="loginEmail" name="email" placeholder="Email или имя пользователя" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Пароль</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock input-icon"></i>
+                        <input type="password" id="loginPassword" name="password" placeholder="Пароль" required>
+                        <i class="fas fa-eye password-toggle" onclick="togglePassword('loginPassword')"></i>
+                    </div>
+                </div>
+                <div class="form-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="remember">
+                        Запомнить меня
+                    </label>
+                    <a href="#" class="forgot-link">Забыли пароль?</a>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Войти</button>
+            </form>
+            
+            <!-- Форма регистрации -->
+            <form class="auth-form" id="registerForm" style="display: none;">
+                <div class="form-group">
+                    <label for="registerUsername">Имя пользователя</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-user input-icon"></i>
+                        <input type="text" id="registerUsername" name="username" placeholder="Имя пользователя" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-envelope input-icon"></i>
+                        <input type="email" id="registerEmail" name="email" placeholder="Электронная почта" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Пароль</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock input-icon"></i>
+                        <input type="password" id="registerPassword" name="password" placeholder="Пароль" required>
+                        <i class="fas fa-eye password-toggle" onclick="togglePassword('registerPassword')"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="registerConfirmPassword">Подтвердите пароль</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock input-icon"></i>
+                        <input type="password" id="registerConfirmPassword" name="confirmPassword" placeholder="Подтвердите пароль" required>
+                        <i class="fas fa-eye password-toggle" onclick="togglePassword('registerConfirmPassword')"></i>
+                    </div>
+                </div>
+                <div class="form-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="agree" required>
+                        Согласен с условиями использования
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Зарегистрироваться</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Скрипты -->
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+
+    <script src="/js/main.js"></script>
+    <script src="/js/loading-animation-simple.js"></script>
+    <script src="/js/loading-fix.js"></script>
+    <script src="/js/navigation-simple.js"></script>
+    <script src="/js/sidebar.js"></script>
+    <script src="/js/auth-system.js"></script>
+</body>
+</html>

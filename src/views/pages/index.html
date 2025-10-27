@@ -1,0 +1,568 @@
+]<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoSound - Музыкальные инструменты и автозвук</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/main-styles.css?v=4">
+    <link rel="stylesheet" href="/css/responsive-fixes.css">
+    <link rel="stylesheet" href="/css/loading-animation.css?v=3">
+    <link rel="stylesheet" href="/css/footer-styles.css">
+    <link rel="stylesheet" href="/css/sidebar-styles.css">
+    <link rel="stylesheet" href="/css/force-header-fix.css">
+    <link rel="stylesheet" href="/css/header-footer.css">
+    <link rel="stylesheet" href="/css/auth-modals.css?v=10">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/svg+xml" href="/images/placeholder.svg">
+
+    <style>
+        .main-content {
+            margin-left: 280px;
+            transition: margin-left 0.3s ease;
+        }
+        
+        .main-content.sidebar-collapsed {
+            margin-left: 80px;
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .main-content.sidebar-collapsed {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Боковой хедер -->
+    <aside class="sidebar" id="sidebar">
+        <!-- Логотип -->
+        <div class="sidebar-header">
+            <div class="sidebar-logo">
+                <div class="logo-icon">
+                    <i class="fas fa-music"></i>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">AutoSound</span>
+                    <span class="logo-subtitle">Музыка и звук</span>
+                </div>
+            </div>
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </div>
+
+        <!-- Навигация -->
+        <nav class="sidebar-nav">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="/" class="nav-link active" data-page="main">
+                        <div class="nav-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <span class="nav-text">Главная</span>
+                        <div class="nav-indicator"></div>
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="/categories" class="nav-link" data-page="categories">
+                        <div class="nav-icon">
+                            <i class="fas fa-guitar"></i>
+                        </div>
+                        <span class="nav-text">Инструменты</span>
+                        <div class="nav-indicator"></div>
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="/autozvuk" class="nav-link" data-page="autozvuk">
+                        <div class="nav-icon">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        <span class="nav-text">Автозвук</span>
+                        <div class="nav-indicator"></div>
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="/news" class="nav-link" data-page="news">
+                        <div class="nav-icon">
+                            <i class="fas fa-newspaper"></i>
+                        </div>
+                        <span class="nav-text">Новости</span>
+                        <div class="nav-indicator"></div>
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="/rating" class="nav-link" data-page="rating">
+                        <div class="nav-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="nav-text">Рейтинги</span>
+                        <div class="nav-indicator"></div>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Кнопка авторизации (показывается когда пользователь не авторизован) -->
+        <div class="auth-buttons">
+            <button class="btn-auth btn-primary auth-login-btn" onclick="openAuthModal()">
+                <i class="fas fa-sign-in-alt"></i>
+                <span class="auth-text">Войти</span>
+            </button>
+        </div>
+
+        <!-- Пользователь (показывается когда пользователь авторизован) -->
+        <div class="sidebar-user" style="display: none;">
+            <a href="/profile" class="user-profile-link">
+                <div class="user-avatar">
+                    <img src="/images/avatar-default.jpg" alt="Аватар">
+                </div>
+                <div class="user-info">
+                    <div class="user-name">Пользователь</div>
+                    <div class="user-role">VIP</div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Поиск -->
+        <div class="sidebar-search">
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" placeholder="Поиск..." class="search-input">
+            </div>
+        </div>
+
+        <!-- Футер -->
+        <div class="sidebar-footer">
+            <div class="footer-text">
+                <div class="copyright">AutoSound © 2024</div>
+                <div class="version">v. 1.0.0</div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Анимация загрузки -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-container">
+            <div class="loading-icon">
+                <i class="fas fa-music"></i>
+            </div>
+            <div class="loading-waves">
+                <div class="loading-wave"></div>
+                <div class="loading-wave"></div>
+                <div class="loading-wave"></div>
+                <div class="loading-wave"></div>
+                <div class="loading-wave"></div>
+            </div>
+            <div class="loading-progress">
+                <div class="loading-progress-bar" id="loadingProgress"></div>
+            </div>
+            <div class="loading-percentage" id="loadingPercentage">0%</div>
+            <div class="loading-text" id="loadingText">Загрузка ресурсов...</div>
+        </div>
+    </div>
+
+    <!-- Фон с органическими формами -->
+    <div class="background">
+        <div class="organic-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape shape-5"></div>
+        </div>
+    </div>
+
+    <!-- Основной контент -->
+    <main class="main-content" id="mainContent">
+        <!-- Герой секция -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1 class="hero-title">
+                            Последние обзоры <span class="gradient-text">музыкальных инструментов</span>
+                        </h1>
+                        <p class="hero-description">
+                            Откройте для себя лучшие гитары, синтезаторы и автозвуковые системы
+                        </p>
+                        <div class="hero-buttons">
+                            <button class="hero-btn">
+                                <i class="fas fa-play"></i>
+                                Смотреть обзоры
+                            </button>
+                        </div>
+                    </div>
+                    <div class="hero-video">
+                        <div class="video-container">
+                            <iframe 
+                                src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0&rel=0&modestbranding=1" 
+                                title="Обзор музыкальных инструментов"
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Популярные статьи -->
+        <section class="popular-articles">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Популярные статьи</h2>
+                </div>
+                
+                <div class="articles-grid" id="articlesGrid">
+                    <!-- Статьи будут загружены через API -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Видео обзоры -->
+        <section class="video-reviews">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Видео обзоры</h2>
+                </div>
+                
+                <div class="reviews-grid">
+                    <div class="review-card">
+                        <div class="review-video">
+                            <div class="video-container">
+                                <iframe 
+                                    src="https://www.youtube.com/embed/jNQXAC9IVRw?rel=0&modestbranding=1" 
+                                    title="Обзор Fender Stratocaster"
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                        </div>
+                        <div class="review-content">
+                            <h3 class="review-title">Обзор Marshall JCM800: Легенда рока</h3>
+                            <p class="review-description">Подробный разбор знаменитого усилителя Marshall JCM800 с демонстрацией звука и настройками.</p>
+                            <div class="review-meta">
+                                <span class="review-views">45.2k просмотров</span>
+                                <span class="review-likes">
+                                    <i class="fas fa-heart"></i>
+                                    156
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-video">
+                            <div class="video-container">
+                                <iframe 
+                                    src="https://www.youtube.com/embed/9bZkp7q19f0?rel=0&modestbranding=1" 
+                                    title="Обзор Moog Subsequent 37"
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                        </div>
+                        <div class="review-content">
+                            <h3 class="review-title">Тест автомобильных динамиков Pioneer</h3>
+                            <p class="review-description">Сравнение качества звука и мощности различных моделей динамиков Pioneer для автомобиля.</p>
+                            <div class="review-meta">
+                                <span class="review-views">28.7k просмотров</span>
+                                <span class="review-likes">
+                                    <i class="fas fa-heart"></i>
+                                    89
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Новинки месяца -->
+        <section class="new-items">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Новинки месяца</h2>
+                </div>
+                
+                <div class="new-items-carousel">
+                    <div class="carousel-track" id="carouselTrack">
+                        <div class="new-item-card">
+                            <div class="item-image">
+                                <img src="/images/guitar1.jpg" alt="Fender Stratocaster 2024" loading="lazy">
+                                <div class="item-badge">Новинка</div>
+                            </div>
+                            <div class="item-content">
+                                <h3 class="item-title">Fender Stratocaster 2024</h3>
+                                <p class="item-description">Обновленная версия легендарной гитары с новыми звукоснимателями</p>
+                                <div class="item-meta">
+                                    <span class="item-category">Гитары</span>
+                                    <span class="item-date">15 декабря 2024</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="new-item-card">
+                            <div class="item-image">
+                                <img src="/images/synthesizer.jpg" alt="Moog Subsequent 37" loading="lazy">
+                                <div class="item-badge">Популярное</div>
+                            </div>
+                            <div class="item-content">
+                                <h3 class="item-title">Moog Subsequent 37</h3>
+                                <p class="item-description">Аналоговый синтезатор с 37 клавишами и встроенными эффектами</p>
+                                <div class="item-meta">
+                                    <span class="item-category">Синтезаторы</span>
+                                    <span class="item-date">12 декабря 2024</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="new-item-card">
+                            <div class="item-image">
+                                <img src="/images/car-audio.jpg" alt="Pioneer Car Audio" loading="lazy">
+                                <div class="item-badge">Хит</div>
+                            </div>
+                            <div class="item-content">
+                                <h3 class="item-title">Pioneer Car Audio System</h3>
+                                <p class="item-description">Полная аудиосистема для автомобиля с Bluetooth и USB</p>
+                                <div class="item-meta">
+                                    <span class="item-category">Автозвук</span>
+                                    <span class="item-date">10 декабря 2024</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="new-item-card">
+                            <div class="item-image">
+                                <img src="/images/guitar1.jpg" alt="Gibson Les Paul" loading="lazy">
+                                <div class="item-badge">Классика</div>
+                            </div>
+                            <div class="item-content">
+                                <h3 class="item-title">Gibson Les Paul Standard</h3>
+                                <p class="item-description">Легендарная электрогитара с характерным звуком</p>
+                                <div class="item-meta">
+                                    <span class="item-category">Гитары</span>
+                                    <span class="item-date">8 декабря 2024</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="new-item-card">
+                            <div class="item-image">
+                                <img src="/images/synthesizer.jpg" alt="Yamaha PSR-E373" loading="lazy">
+                                <div class="item-badge">Для начинающих</div>
+                            </div>
+                            <div class="item-content">
+                                <h3 class="item-title">Yamaha PSR-E373</h3>
+                                <p class="item-description">Цифровое пианино с 61 клавишей и 622 тембрами</p>
+                                <div class="item-meta">
+                                    <span class="item-category">Клавиши</span>
+                                    <span class="item-date">5 декабря 2024</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-indicators" id="carouselIndicators">
+                        <div class="carousel-dot active" onclick="goToSlide(0)"></div>
+                        <div class="carousel-dot" onclick="goToSlide(1)"></div>
+                        <div class="carousel-dot" onclick="goToSlide(2)"></div>
+                        <div class="carousel-dot" onclick="goToSlide(3)"></div>
+                        <div class="carousel-dot" onclick="goToSlide(4)"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <!-- О компании -->
+                <div class="footer-section">
+                    <h3 class="footer-title">AutoSound</h3>
+                    <p class="footer-description">
+                        Ваш надежный партнер в мире музыки и автозвука. 
+                        Мы предлагаем качественные инструменты, оборудование 
+                        и профессиональные услуги.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://youtube.com/@autosound" class="social-link" target="_blank">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://instagram.com/autosound" class="social-link" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://t.me/autosound" class="social-link" target="_blank">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="https://vk.com/autosound" class="social-link" target="_blank">
+                            <i class="fab fa-vk"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Каталог -->
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Каталог</h4>
+                    <ul class="footer-links">
+                        <li><a href="/categories">Музыкальные инструменты</a></li>
+                        <li><a href="/autozvuk">Автозвук</a></li>
+                        <li><a href="/news">Новости</a></li>
+                        <li><a href="/rating">Рейтинги</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Поддержка -->
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Поддержка</h4>
+                    <ul class="footer-links">
+                        <li><a href="/about">О нас</a></li>
+                        <li><a href="/contacts">Контакты</a></li>
+                        <li><a href="/terms">Условия использования</a></li>
+                        <li><a href="/policy">Политика конфиденциальности</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Контакты -->
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Контакты</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+7 (999) 123-45-67</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@autosound.ru</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Москва, ул. Музыкальная, 1</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 AutoSound. Все права защищены.</p>
+                    <div class="footer-bottom-links">
+                        <a href="/terms">Условия</a>
+                        <a href="/policy">Политика</a>
+                        <a href="/contacts">Контакты</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальное окно авторизации -->
+    <div class="modal-overlay" id="authModal">
+        <div class="modal-content auth-modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Вход в систему</h2>
+                <button class="modal-close" onclick="closeAuthModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="auth-tabs">
+                <button class="auth-tab active" onclick="switchAuthTab('login')">Вход</button>
+                <button class="auth-tab" onclick="switchAuthTab('register')">Регистрация</button>
+            </div>
+
+            <!-- Форма входа -->
+            <form class="auth-form" id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-envelope input-icon"></i>
+                        <input type="email" id="loginEmail" name="email" placeholder="Email или имя пользователя" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Пароль</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock input-icon"></i>
+                        <input type="password" id="loginPassword" name="password" placeholder="Пароль" required>
+                        <i class="fas fa-eye password-toggle" onclick="togglePassword('loginPassword')"></i>
+                    </div>
+                </div>
+                <div class="form-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="remember">
+                        Запомнить меня
+                    </label>
+                    <a href="#" class="forgot-link">Забыли пароль?</a>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Войти</button>
+            </form>
+
+            <!-- Форма регистрации -->
+            <form class="auth-form" id="registerForm" style="display: none;">
+                <div class="form-group">
+                    <label for="registerUsername">Имя пользователя</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-user input-icon"></i>
+                        <input type="text" id="registerUsername" name="username" placeholder="Имя пользователя" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-envelope input-icon"></i>
+                        <input type="email" id="registerEmail" name="email" placeholder="Электронная почта" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Пароль</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock input-icon"></i>
+                        <input type="password" id="registerPassword" name="password" placeholder="Пароль" required>
+                        <i class="fas fa-eye password-toggle" onclick="togglePassword('registerPassword')"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="registerConfirmPassword">Подтвердите пароль</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock input-icon"></i>
+                        <input type="password" id="registerConfirmPassword" name="confirmPassword" placeholder="Подтвердите пароль" required>
+                        <i class="fas fa-eye password-toggle" onclick="togglePassword('registerConfirmPassword')"></i>
+                    </div>
+                </div>
+                <div class="form-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="agree" required>
+                        Согласен с условиями использования
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Зарегистрироваться</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Модальные окна авторизации создаются динамически через JavaScript -->
+
+    <script src="/js/main.js"></script>
+    <script src="/js/loading-animation-simple.js"></script>
+    <script src="/js/loading-fix.js"></script>
+    <script src="/js/navigation-simple.js"></script>
+    <script src="/js/sidebar.js"></script>
+    <script src="/js/auth-system.js?v=2"></script>
+    
+</body>
+</html>

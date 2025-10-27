@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты - AutoSound</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/main-styles.css?v=8">
+    <link rel="stylesheet" href="/css/responsive-fixes.css">
+    <link rel="stylesheet" href="/css/loading-animation.css?v=3">
+    <link rel="stylesheet" href="/css/footer-styles.css">
+    <link rel="stylesheet" href="/css/sidebar-styles.css">
+    <link rel="stylesheet" href="/css/force-header-fix.css">
+    <link rel="stylesheet" href="/css/header-footer.css">
+    <link rel="stylesheet" href="/css/auth-modals.css?v=10">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/svg+xml" href="/images/placeholder.svg">
+    <style>
+        .main-content {
+            margin-left: 280px;
+            transition: margin-left 0.3s ease;
+        }
+        
+        .main-content.sidebar-collapsed {
+            margin-left: 80px;
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .main-content.sidebar-collapsed {
+                margin-left: 0;
+            }
+        }
+    </style>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="icon" type="image/svg+xml" href="/images/placeholder.svg">
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="icon" type="image/svg+xml" href="/images/placeholder.svg">
+
+    
+</head>
+<body>
+    <!-- Боковой хедер -->
+    <aside class="sidebar" id="sidebar">
+        <!-- Логотип -->
+        <div class="sidebar-header">
+            <div class="sidebar-logo">
+                <div class="logo-icon">
+                    <i class="fas fa-music"></i>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">AutoSound</span>
+                    <span class="logo-subtitle">Music & Audio</span>
+                </div>
+            </div>
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Навигация -->
+        <nav class="sidebar-nav">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="/" class="nav-link" data-page="main">
+                        <div class="nav-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <span class="nav-text">Главная</span>
+                        <div class="nav-indicator"></div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/categories" class="nav-link" data-page="categories">
+                        <div class="nav-icon">
+                            <i class="fas fa-guitar"></i>
+                        </div>
+                        <span class="nav-text">Инструменты</span>
+                        <div class="nav-indicator"></div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/autozvuk" class="nav-link" data-page="autozvuk">
+                        <div class="nav-icon">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        <span class="nav-text">Автозвук</span>
+                        <div class="nav-indicator"></div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/news" class="nav-link" data-page="news">
+                        <div class="nav-icon">
+                            <i class="fas fa-newspaper"></i>
+                        </div>
+                        <span class="nav-text">Новости</span>
+                        <div class="nav-indicator"></div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/rating" class="nav-link" data-page="rating">
+                        <div class="nav-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="nav-text">Рейтинги</span>
+                        <div class="nav-indicator"></div>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Пользователь -->
+        <div class="sidebar-user">
+            <div class="user-avatar">
+                <img src="/images/avatar-default.jpg" alt="Аватар пользователя">
+            </div>
+            <div class="user-info">
+                <div class="user-name">Гость</div>
+                <div class="user-status">Не авторизован</div>
+            </div>
+            <button class="btn-auth btn-primary auth-login-btn" onclick="openAuthModal()">
+                <i class="fas fa-sign-in-alt"></i>
+                <span class="auth-text">Войти</span>
+            </button>
+        </div>
+    </aside>
+    <!-- Фон с органическими формами -->
+    <div class="background">
+        <div class="organic-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape shape-5"></div>
+        </div>
+    </div>
+
+    <!-- Основной контент -->
+    <main class="main-content" id="mainContent">
+        <!-- Hero секция -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1 class="hero-title">
+                            <span class="gradient-text">Свяжитесь с нами</span>
+                        </h1>
+                        <p class="hero-subtitle">
+                            Мы всегда готовы ответить на ваши вопросы и помочь с выбором
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Контактная информация -->
+        <section class="articles-section">
+            <div class="container">
+                <div class="categories-grid" style="margin-top: 0;">
+                    <!-- Телефон -->
+                    <div class="category-card">
+                        <div class="category-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h3 class="category-title">Телефон</h3>
+                        <p class="category-description">+7 (999) 123-45-67</p>
+                        <div class="category-stats">
+                            <span class="stat">Круглосуточно</span>
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="category-card">
+                        <div class="category-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3 class="category-title">Email</h3>
+                        <p class="category-description">info@autosound.ru</p>
+                        <div class="category-stats">
+                            <span class="stat">Ответим за 24ч</span>
+                        </div>
+                    </div>
+
+                    <!-- Адрес -->
+                    <div class="category-card">
+                        <div class="category-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3 class="category-title">Адрес</h3>
+                        <p class="category-description">Москва, ул. Музыкальная, 1</p>
+                        <div class="category-stats">
+                            <span class="stat">10:00 - 22:00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <!-- О компании -->
+                <div class="footer-section">
+                    <h3 class="footer-title">AutoSound</h3>
+                    <p class="footer-description">
+                        Ваш надежный партнер в мире музыки и автозвука. 
+                        Мы предлагаем качественные инструменты, оборудование 
+                        и профессиональные услуги.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://youtube.com/@autosound" class="social-link" target="_blank">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://instagram.com/autosound" class="social-link" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://t.me/autosound" class="social-link" target="_blank">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="https://vk.com/autosound" class="social-link" target="_blank">
+                            <i class="fab fa-vk"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Каталог -->
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Каталог</h4>
+                    <ul class="footer-links">
+                        <li><a href="/categories">Музыкальные инструменты</a></li>
+                        <li><a href="/autozvuk">Автозвук</a></li>
+                        <li><a href="/news">Новости</a></li>
+                        <li><a href="/rating">Рейтинги</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Поддержка -->
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Поддержка</h4>
+                    <ul class="footer-links">
+                        <li><a href="/about">О нас</a></li>
+                        <li><a href="/contacts">Контакты</a></li>
+                        <li><a href="/terms">Условия использования</a></li>
+                        <li><a href="/policy">Политика конфиденциальности</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Контакты -->
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Контакты</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+7 (999) 123-45-67</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@autosound.ru</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Москва, ул. Музыкальная, 1</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 AutoSound. Все права защищены.</p>
+                    <div class="footer-bottom-links">
+                        <a href="/terms">Условия</a>
+                        <a href="/policy">Политика</a>
+                        <a href="/contacts">Контакты</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальное окно авторизации -->
+    <div class="modal-overlay" id="authModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Вход в систему</h2>
+                <button class="modal-close" onclick="closeAuthModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="auth-tabs">
+                <button class="auth-tab active" onclick="switchAuthTab('login')">Вход</button>
+                <button class="auth-tab" onclick="switchAuthTab('register')">Регистрация</button>
+            </div>
+            
+            <!-- Форма входа -->
+            <form class="auth-form" id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-envelope input-icon"></i>
+                        <input type="email" id="loginEmail" name="email" placeholder="Email или имя пользователя" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Пароль</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock input-icon"></i>
+                        <input type="password" id="loginPassword" name="password" placeholder="Пароль" required>
+                        <i class="fas fa-eye password-toggle" onclick="togglePassword('loginPassword')"></i>
+                    </div>
+                </div>
+                <div class="form-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="remember">
+                        Запомнить меня
+                    </label>
+                    <a href="#" class="forgot-link">Забыли пароль?</a>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Войти</button>
+            </form>
+            
+            <!-- Форма регистрации -->
+            <form class="auth-form" id="registerForm" style="display: none;">
+                <div class="form-group">
+                    <label for="registerUsername">Имя пользователя</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-user input-icon"></i>
+                        <input type="text" id="registerUsername" name="username" placeholder="Имя пользователя" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-envelope input-icon"></i>
+                        <input type="email" id="registerEmail" name="email" placeholder="Электронная почта" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Пароль</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock input-icon"></i>
+                        <input type="password" id="registerPassword" name="password" placeholder="Пароль" required>
+                        <i class="fas fa-eye password-toggle" onclick="togglePassword('registerPassword')"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="registerConfirmPassword">Подтвердите пароль</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock input-icon"></i>
+                        <input type="password" id="registerConfirmPassword" name="confirmPassword" placeholder="Подтвердите пароль" required>
+                        <i class="fas fa-eye password-toggle" onclick="togglePassword('registerConfirmPassword')"></i>
+                    </div>
+                </div>
+                <div class="form-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="agree" required>
+                        Согласен с условиями использования
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Зарегистрироваться</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Скрипты -->
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+
+    <script src="/js/main.js"></script>
+    <script src="/js/loading-animation-simple.js"></script>
+    <script src="/js/loading-fix.js"></script>
+    <script src="/js/navigation-simple.js"></script>
+    <script src="/js/sidebar.js"></script>
+    <script src="/js/auth-system.js"></script>
+</body>
+</html>

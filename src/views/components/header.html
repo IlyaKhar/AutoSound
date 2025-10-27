@@ -1,0 +1,90 @@
+<!-- Боковой хедер -->
+<aside class="sidebar" id="sidebar">
+    <!-- Логотип -->
+    <div class="sidebar-header">
+        <div class="sidebar-logo">
+            <div class="logo-icon">
+                <i class="fas fa-music"></i>
+            </div>
+            <div class="logo-text">
+                <span class="logo-title">AutoSound</span>
+                <span class="logo-subtitle">Music & Audio</span>
+            </div>
+        </div>
+        <button class="sidebar-toggle" id="sidebarToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+
+    <!-- Навигация -->
+    <nav class="sidebar-nav">
+        <ul class="nav-list">
+            <li class="nav-item">
+                <a href="/" class="nav-link active" data-page="main">
+                    <div class="nav-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <span class="nav-text">Главная</span>
+                    <div class="nav-indicator"></div>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/categories" class="nav-link" data-page="categories">
+                    <div class="nav-icon">
+                        <i class="fas fa-guitar"></i>
+                    </div>
+                    <span class="nav-text">Инструменты</span>
+                    <div class="nav-indicator"></div>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/autozvuk" class="nav-link" data-page="autozvuk">
+                    <div class="nav-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <span class="nav-text">Автозвук</span>
+                    <div class="nav-indicator"></div>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/news" class="nav-link" data-page="news">
+                    <div class="nav-icon">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <span class="nav-text">Новости</span>
+                    <div class="nav-indicator"></div>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/rating" class="nav-link" data-page="rating">
+                    <div class="nav-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <span class="nav-text">Рейтинги</span>
+                    <div class="nav-indicator"></div>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Пользователь -->
+    <div class="sidebar-user">
+        <a href="/profile" class="user-profile-link">
+            <div class="user-avatar">
+                <img src="/images/avatar-default.jpg" alt="Аватар пользователя" id="sidebarAvatar">
+            </div>
+            <div class="user-info">
+                <div class="user-name" id="sidebarUserName">Гость</div>
+                <div class="user-status" id="sidebarUserStatus">Не авторизован</div>
+            </div>
+        </a>
+        <button class="btn-auth btn-primary auth-login-btn" id="sidebarLoginBtn" onclick="openAuthModal()">
+            <i class="fas fa-sign-in-alt"></i>
+            <span class="auth-text">Войти</span>
+        </button>
+        <button class="btn-auth btn-danger auth-logout-btn" id="sidebarLogoutBtn" onclick="logout()" style="display: none;">
+            <i class="fas fa-sign-out-alt"></i>
+            <span class="auth-text">Выйти</span>
+        </button>
+    </div>
+</aside>

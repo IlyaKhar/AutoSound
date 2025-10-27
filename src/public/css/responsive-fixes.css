@@ -1,0 +1,746 @@
+/* ===== УЛУЧШЕННАЯ АДАПТИВНОСТЬ ДЛЯ ВСЕХ ЭКРАНОВ ===== */
+
+/* ===== ОСНОВНЫЕ БРЕЙКПОИНТЫ ===== */
+/*
+- Mobile: 320px - 767px
+- Tablet: 768px - 1023px
+- Desktop: 1024px - 1439px
+- Large Desktop: 1440px+
+*/
+
+/* ===== МОБИЛЬНЫЕ УСТРОЙСТВА (320px - 767px) ===== */
+@media (max-width: 767px) {
+    /* Общие стили для мобильных */
+    body {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .container {
+        padding: 10px 15px;
+        max-width: 100%;
+    }
+
+    /* Шапка для мобильных */
+    .header {
+        padding: 10px 0;
+    }
+
+    .header-content {
+        flex-direction: column;
+        gap: 15px;
+        align-items: stretch;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+        justify-content: center;
+    }
+
+    .logo i {
+        font-size: 1.3rem;
+    }
+
+    .nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        order: 3;
+    }
+
+    .nav-link {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+
+    .header-actions {
+        flex-direction: column;
+        gap: 15px;
+        align-items: stretch;
+    }
+
+    .search-box {
+        order: 1;
+    }
+
+    .search-input {
+        width: 100%;
+        font-size: 0.9rem;
+        padding: 10px 15px 10px 40px;
+    }
+
+    .user-menu {
+        order: 2;
+        align-self: center;
+    }
+
+    /* Главный контент */
+    .main {
+        margin-top: 140px;
+    }
+
+    .hero-banner {
+        padding: 40px 0;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+        line-height: 1.3;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .hero-btn {
+        padding: 12px 24px;
+        font-size: 1rem;
+        align-self: center;
+    }
+
+    /* Секции */
+    .popular-articles,
+    .latest-reviews,
+    .new-this-month {
+        padding: 40px 0;
+    }
+
+    .section-header {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    /* Сетки статей */
+    .articles-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .article-card.featured {
+        grid-column: span 1;
+    }
+
+    .article-card {
+        margin-bottom: 20px;
+    }
+
+    .article-content {
+        padding: 20px;
+    }
+
+    .article-title {
+        font-size: 1.1rem;
+        line-height: 1.4;
+    }
+
+    .article-excerpt {
+        font-size: 0.9rem;
+    }
+
+    /* Обзоры */
+    .reviews-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .review-content {
+        padding: 20px;
+    }
+
+    .review-title {
+        font-size: 1.1rem;
+    }
+
+    /* Новинки */
+    .new-items-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .new-item-card {
+        padding: 15px;
+    }
+
+    .item-name {
+        font-size: 1rem;
+    }
+
+    /* Футер */
+    .footer {
+        padding: 40px 0 20px;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+    }
+
+    .footer-section {
+        margin-bottom: 20px;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+
+    .newsletter {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .newsletter-input {
+        width: 100%;
+    }
+}
+
+/* ===== ПЛАНШЕТЫ (768px - 1023px) ===== */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .container {
+        padding: 15px 20px;
+        max-width: 100%;
+    }
+
+    .header-content {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .nav {
+        display: flex;
+        gap: 20px;
+    }
+
+    .search-input {
+        width: 200px;
+    }
+
+    .main {
+        margin-top: 100px;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .articles-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+
+    .article-card.featured {
+        grid-column: span 2;
+    }
+
+    .reviews-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+
+    .new-items-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+}
+
+/* ===== ДЕСКТОПЫ (1024px - 1439px) ===== */
+@media (min-width: 1024px) and (max-width: 1439px) {
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .articles-grid {
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 30px;
+    }
+
+    .article-card.featured {
+        grid-row: span 2;
+    }
+
+    .reviews-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+
+    .new-items-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
+    }
+
+    .footer-content {
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 40px;
+    }
+}
+
+/* ===== БОЛЬШИЕ ДЕСКТОПЫ (1440px+) ===== */
+@media (min-width: 1440px) {
+    .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 30px;
+    }
+
+    .hero-title {
+        font-size: 3.5rem;
+    }
+
+    .section-title {
+        font-size: 2.8rem;
+    }
+
+    .articles-grid {
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 40px;
+    }
+
+    .reviews-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+    }
+
+    .new-items-grid {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 30px;
+    }
+}
+
+/* ===== ПРОФИЛЬ - АДАПТИВНОСТЬ ===== */
+@media (max-width: 767px) {
+    .profile-info {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .profile-avatar-section {
+        align-items: center;
+    }
+
+    .profile-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .profile-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .profile-layout {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .profile-tabs {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .tab-btn {
+        justify-content: flex-start;
+        padding: 15px 20px;
+    }
+
+    .content-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: stretch;
+    }
+
+    .panel-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .articles-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .article-actions {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .comment-item {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .comment-actions {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .favorite-item,
+    .follower-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .profile-layout {
+        grid-template-columns: 250px 1fr;
+        gap: 30px;
+    }
+
+    .profile-stats {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .articles-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+}
+
+/* ===== АДМИН ПАНЕЛЬ - АДАПТИВНОСТЬ ===== */
+@media (max-width: 767px) {
+    .admin-layout {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .admin-tabs {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .admin-tab-btn {
+        justify-content: flex-start;
+        padding: 15px 20px;
+    }
+
+    .panel-header {
+        flex-direction: column;
+        gap: 20px;
+        align-items: stretch;
+    }
+
+    .panel-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .table-header,
+    .table-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .table-cell {
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .table-cell:before {
+        content: attr(data-label) ": ";
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.7);
+        display: inline-block;
+        width: 120px;
+    }
+
+    .users-grid,
+    .categories-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .user-card,
+    .category-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .user-actions,
+    .category-actions {
+        justify-content: center;
+    }
+
+    .comment-item {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .comment-actions {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .settings-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .pagination {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .page-numbers {
+        order: -1;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .admin-layout {
+        grid-template-columns: 250px 1fr;
+        gap: 30px;
+    }
+
+    .users-grid,
+    .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+
+    .table-header,
+    .table-row {
+        grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
+    }
+}
+
+/* ===== ОСОБЫЕ СЛУЧАИ ===== */
+
+/* Очень маленькие экраны (до 360px) */
+@media (max-width: 360px) {
+    .container {
+        padding: 5px 10px;
+    }
+
+    .hero-title {
+        font-size: 1.8rem;
+    }
+
+    .section-title {
+        font-size: 1.6rem;
+    }
+
+    .new-items-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .tab-btn {
+        padding: 12px 15px;
+        font-size: 0.85rem;
+    }
+}
+
+/* Ландшафтная ориентация на мобильных */
+@media (max-width: 767px) and (orientation: landscape) {
+    .main {
+        margin-top: 100px;
+    }
+
+    .hero-banner {
+        padding: 20px 0;
+    }
+
+    .hero-title {
+        font-size: 1.8rem;
+    }
+
+    .section-title {
+        font-size: 1.6rem;
+    }
+}
+
+/* Высокие экраны */
+@media (min-height: 900px) {
+    .hero-banner {
+        padding: 80px 0;
+    }
+
+    .popular-articles,
+    .latest-reviews,
+    .new-this-month {
+        padding: 100px 0;
+    }
+}
+
+/* ===== УЛУЧШЕНИЯ ДЛЯ TOUCH УСТРОЙСТВ ===== */
+@media (hover: none) and (pointer: coarse) {
+    /* Увеличиваем области касания */
+    .nav-link,
+    .tab-btn,
+    .action-btn,
+    .social-btn {
+        min-height: 44px;
+        min-width: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Убираем hover эффекты на touch устройствах */
+    .article-card:hover,
+    .user-card:hover,
+    .category-card:hover {
+        transform: none;
+    }
+
+    /* Улучшаем фокус для навигации с клавиатуры */
+    .nav-link:focus,
+    .tab-btn:focus,
+    .action-btn:focus {
+        outline: 2px solid rgba(255, 107, 129, 0.8);
+        outline-offset: 2px;
+    }
+}
+
+/* ===== ПЕЧАТЬ ===== */
+@media print {
+    .header,
+    .footer,
+    .admin-sidebar,
+    .profile-sidebar {
+        display: none;
+    }
+
+    .main {
+        margin-top: 0;
+    }
+
+    .article-card,
+    .user-card,
+    .category-card {
+        break-inside: avoid;
+        margin-bottom: 20px;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+}
+
+/* ===== ТЕМНАЯ ТЕМА (если поддерживается) ===== */
+@media (prefers-color-scheme: dark) {
+    /* Стили уже оптимизированы для темной темы */
+}
+
+/* ===== УМЕНЬШЕННАЯ АНИМАЦИЯ (если пользователь предпочитает) ===== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ===== ВЫСОКИЙ КОНТРАСТ ===== */
+@media (prefers-contrast: high) {
+    .article-card,
+    .user-card,
+    .category-card,
+    .comment-item {
+        border: 2px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .nav-link,
+    .tab-btn {
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+}
+
+/* ===== ИСПРАВЛЕНИЯ ДЛЯ СТАРЫХ БРАУЗЕРОВ ===== */
+@supports not (display: grid) {
+    .articles-grid,
+    .reviews-grid,
+    .new-items-grid,
+    .users-grid,
+    .categories-grid {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .article-card,
+    .review-card,
+    .new-item-card,
+    .user-card,
+    .category-card {
+        flex: 1 1 300px;
+        margin: 10px;
+    }
+}
+
+/* ===== ДОПОЛНИТЕЛЬНЫЕ УЛУЧШЕНИЯ ===== */
+
+/* Плавная прокрутка */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Улучшенный скроллбар */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(42, 42, 64, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 107, 129, 0.6);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 107, 129, 0.8);
+}
+
+/* Улучшения для производительности */
+.article-card,
+.user-card,
+.category-card,
+.comment-item {
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+/* Оптимизация для мобильных сетей */
+@media (max-width: 767px) {
+    .article-image img,
+    .user-avatar img,
+    .category-icon {
+        max-width: 100%;
+        height: auto;
+    }
+}
