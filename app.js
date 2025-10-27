@@ -28,10 +28,11 @@ const { authenticateToken } = require('./src/middleware/auth');
 const app = express();
 
 // ===== TRUST PROXY (ВАЖНО ДЛЯ VERCEL) =====
-// app.set('trust proxy', true);
+app.set('trust proxy', true);
 
 // ===== ПОДКЛЮЧЕНИЕ К БАЗЕ ДАННЫХ =====
-// connectDB(); // ВРЕМЕННО ОТКЛЮЧЕНО
+// Подключаемся без await - пусть работает в фоне
+connectDB().catch(err => console.error('MongoDB error:', err.message));
 
 // ===== MIDDLEWARE =====
 
