@@ -11,9 +11,7 @@ const connectDB = async () => {
             maxPoolSize: 10, // Максимум соединений в пуле
             minPoolSize: 0, // Минимум соединений в пуле (0 для Serverless)
             retryWrites: true,
-            w: 'majority',
-            keepAlive: true,
-            keepAliveInitialDelay: 300000
+            w: 'majority'
         });
 
         console.log(`✅ MongoDB подключена: ${conn.connection.host}`);
