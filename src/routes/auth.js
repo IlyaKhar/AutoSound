@@ -12,6 +12,22 @@ const router = express.Router();
 // ===== РЕГИСТРАЦИЯ =====
 router.post('/register', async (req, res) => {
     try {
+        // Проверяем подключение к MongoDB
+        const mongoose = require('mongoose');
+        if (mongoose.connection.readyState !== 1) {
+            console.log('⚠️ MongoDB не подключена, пытаемся подключиться...');
+            const connectDB = require('../config/database');
+            await connectDB();
+            // Ждём подключения
+            await new Promise((resolve) => {
+                if (mongoose.connection.readyState === 1) {
+                    resolve();
+                } else {
+                    mongoose.connection.once('connected', resolve);
+                }
+            });
+        }
+        
         console.log('\n🔔 === ЗАПРОС НА РЕГИСТРАЦИЮ ===');
         console.log('📦 Полный body:', JSON.stringify(req.body, null, 2));
         
@@ -137,6 +153,22 @@ router.post('/login', [
         .withMessage('Пароль обязателен')
 ], async (req, res) => {
     try {
+        // Проверяем подключение к MongoDB
+        const mongoose = require('mongoose');
+        if (mongoose.connection.readyState !== 1) {
+            console.log('⚠️ MongoDB не подключена, пытаемся подключиться...');
+            const connectDB = require('../config/database');
+            await connectDB();
+            // Ждём подключения
+            await new Promise((resolve) => {
+                if (mongoose.connection.readyState === 1) {
+                    resolve();
+                } else {
+                    mongoose.connection.once('connected', resolve);
+                }
+            });
+        }
+        
         // Проверка валидации
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
