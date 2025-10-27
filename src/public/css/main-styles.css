@@ -1583,7 +1583,10 @@
     }
     
     .section-title {
-        font-size: 2rem;
+        font-size: 1.5rem;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
     }
     
     .search-input {
