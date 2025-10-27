@@ -28,10 +28,10 @@ const { authenticateToken } = require('./src/middleware/auth');
 const app = express();
 
 // ===== TRUST PROXY (ВАЖНО ДЛЯ VERCEL) =====
-app.set('trust proxy', true);
+// app.set('trust proxy', true);
 
 // ===== ПОДКЛЮЧЕНИЕ К БАЗЕ ДАННЫХ =====
-connectDB();
+// connectDB(); // ВРЕМЕННО ОТКЛЮЧЕНО
 
 // ===== MIDDLEWARE =====
 
@@ -50,15 +50,15 @@ app.use(compression());
 // Логирование
 app.use(morgan('combined'));
 
-// Rate limiting
-const limiter = rateLimit({
-    windowMs: config.security.rateLimitWindow * 60 * 1000,
-    max: config.security.rateLimitMax,
-    message: {
-        error: 'Слишком много запросов с этого IP, попробуйте позже'
-    }
-});
-app.use('/api/', limiter);
+// Rate limiting (ВРЕМЕННО ОТКЛЮЧЕНО ДЛЯ VERCEL)
+// const limiter = rateLimit({
+//     windowMs: config.security.rateLimitWindow * 60 * 1000,
+//     max: config.security.rateLimitMax,
+//     message: {
+//         error: 'Слишком много запросов с этого IP, попробуйте позже'
+//     }
+// });
+// app.use('/api/', limiter);
 
 // Парсинг JSON
 app.use(express.json({ limit: '10mb' }));
