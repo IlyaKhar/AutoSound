@@ -807,11 +807,12 @@ function moveCarousel(direction) {
     const cards = track.querySelectorAll('.new-item-card');
     const totalSlides = cards.length;
     const slidesPerView = getSlidesPerView();
+    const maxSlides = totalSlides - slidesPerView;
     
     if (direction === 'prev') {
-        currentSlide = Math.max(0, currentSlide - 1);
+        currentSlide = currentSlide <= 0 ? maxSlides : currentSlide - 1;
     } else {
-        currentSlide = Math.min(totalSlides - slidesPerView, currentSlide + 1);
+        currentSlide = currentSlide >= maxSlides ? 0 : currentSlide + 1;
     }
     
     const offset = -currentSlide * (100 / slidesPerView);
