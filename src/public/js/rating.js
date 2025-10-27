@@ -90,7 +90,7 @@ class RatingPageManager {
     // ===== ЗАГРУЗКА РЕЙТИНГОВ =====
     async loadRatings() {
         try {
-            const response = await fetch('http://localhost:3000/api/articles?type=rating');
+            const response = await fetch('/api/articles?type=rating');
             const result = await response.json();
 
             if (result.articles && result.articles.length > 0) {

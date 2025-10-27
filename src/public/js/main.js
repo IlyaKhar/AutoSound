@@ -104,7 +104,7 @@ class MainPageManager {
         if (!query.trim()) return;
 
         try {
-            const response = await fetch(`http://localhost:3000/api/articles/search?q=${encodeURIComponent(query)}`);
+                            const response = await fetch(`/api/articles/search?q=${encodeURIComponent(query)}`);
             const result = await response.json();
 
             if (result.success) {
@@ -242,7 +242,7 @@ class MainPageManager {
         const data = Object.fromEntries(formData.entries());
 
         try {
-            const response = await fetch('http://localhost:3000/api/auth/login', {
+            const response = await fetch('/api/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -277,7 +277,7 @@ class MainPageManager {
         }
 
         try {
-            const response = await fetch('http://localhost:3000/api/auth/register', {
+            const response = await fetch('/api/auth/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -385,7 +385,7 @@ class MainPageManager {
     // ===== ЗАГРУЗКА СТАТЕЙ =====
     async loadArticles() {
         try {
-            const response = await fetch('http://localhost:3000/api/articles');
+                            const response = await fetch('/api/articles');
             const result = await response.json();
 
             if (result.articles && result.articles.length > 0) {

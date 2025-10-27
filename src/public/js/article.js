@@ -27,7 +27,7 @@ class ArticlePageManager {
         }
 
         try {
-            const response = await fetch(`http://localhost:3000/api/articles/${this.articleId}`);
+            const response = await fetch(`/api/articles/${this.articleId}`);
             const result = await response.json();
 
             if (result.success && result.article) {
@@ -135,7 +135,7 @@ class ArticlePageManager {
         }
 
         try {
-            const response = await fetch(`http://localhost:3000/api/articles/${this.articleId}/comments`, {
+            const response = await fetch(`/api/articles/${this.articleId}/comments`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -161,7 +161,7 @@ class ArticlePageManager {
 
     async loadComments() {
         try {
-            const response = await fetch(`http://localhost:3000/api/articles/${this.articleId}/comments`);
+            const response = await fetch(`/api/articles/${this.articleId}/comments`);
             const result = await response.json();
 
             if (result.success) {
@@ -204,7 +204,7 @@ class ArticlePageManager {
 
     async toggleLike() {
         try {
-            const response = await fetch(`http://localhost:3000/api/articles/${this.articleId}/like`, {
+            const response = await fetch(`/api/articles/${this.articleId}/like`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -261,7 +261,7 @@ class ArticlePageManager {
     // ===== ПОХОЖИЕ СТАТЬИ =====
     async setupRelatedArticles() {
         try {
-            const response = await fetch(`http://localhost:3000/api/articles/related/${this.articleId}`);
+            const response = await fetch(`/api/articles/related/${this.articleId}`);
             const result = await response.json();
 
             if (result.success && result.articles) {

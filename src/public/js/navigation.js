@@ -145,7 +145,7 @@ class NavigationManager {
         if (!query.trim()) return;
 
         try {
-            const response = await fetch(`http://localhost:3000/api/articles/search?q=${encodeURIComponent(query)}`);
+            const response = await fetch(`/api/articles/search?q=${encodeURIComponent(query)}`);
             const result = await response.json();
 
             if (result.success) {

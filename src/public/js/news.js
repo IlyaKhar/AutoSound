@@ -73,7 +73,7 @@ class NewsPageManager {
     // ===== ЗАГРУЗКА НОВОСТЕЙ =====
     async loadNews() {
         try {
-            const response = await fetch('http://localhost:3000/api/articles?type=news');
+            const response = await fetch('/api/articles?type=news');
             const result = await response.json();
 
             if (result.articles && result.articles.length > 0) {
